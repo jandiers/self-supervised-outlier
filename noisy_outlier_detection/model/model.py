@@ -21,8 +21,8 @@ class NoisyOutlierDetector(Pipeline):
                  ccp_alpha: float = 0.01, n_sampling_iter: int = 20,
                  min_samples_leaf: int = 5,
                  verbose: bool = False,
-                 n_jobs=None,
-                 random_state=None):
+                 n_jobs=None
+                 ):
         """
         The NoisyOutlierDetector performs outlier detection based on self-supervised learning. It learns differences between
         the provided data and uniform noise. See paper for details. Usage is as follows:
@@ -41,16 +41,15 @@ class NoisyOutlierDetector(Pipeline):
         :param min_samples_leaf: minimum number of samples at the leaf, defaults to 20
         :param verbose: if True, print progress messages, defaults to False
         :param n_jobs: number of kernels used for estimates. defaults to None, meaning no parallel processing
-        :param random_state: control for randomness of sampled points
         """
 
         # set attributes
         self.n_estimators, self.ccp_alpha, \
             self.n_sampling_iter, self.min_samples_leaf, \
-            self.verbose, self.n_jobs, self.random_state \
+            self.verbose, self.n_jobs \
             = \
             n_estimators, ccp_alpha, n_sampling_iter, \
-            min_samples_leaf, verbose, n_jobs, random_state
+            min_samples_leaf, verbose, n_jobs
 
         # construct pipeline
         super(NoisyOutlierDetector, self).__init__([
@@ -64,7 +63,6 @@ class NoisyOutlierDetector(Pipeline):
                     n_sampling_iter=self.n_sampling_iter,
                     outlier_inference=False,
                     verbose=self.verbose,
-                    random_state=self.random_state,
                 )
             ),
             (
