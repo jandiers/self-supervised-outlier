@@ -64,7 +64,6 @@ class NoisyOutlierDetector(Pipeline):
                     n_sampling_iter=self.n_sampling_iter,
                     outlier_inference=False,
                     verbose=self.verbose,
-                    n_jobs=self.n_jobs,
                     random_state=self.random_state,
                 )
             ),
