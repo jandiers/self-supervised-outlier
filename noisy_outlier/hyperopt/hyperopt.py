@@ -25,8 +25,8 @@ class HyperparameterOptimizer(RandomizedSearchCV):
     Usage is as follows:
 
     >>> import numpy as np
-    >>> from noisy_outlier_detection import HyperparameterOptimizer, PercentileScoring
-    >>> from noisy_outlier_detection import NoisyOutlierDetector
+    >>> from noisy_outlier import HyperparameterOptimizer, PercentileScoring
+    >>> from noisy_outlier import NoisyOutlierDetector
     >>> from scipy.stats.distributions import uniform, randint
     >>> X = np.random.randn(50, 5)
     >>> grid = dict(n_estimators=randint(50, 150), ccp_alpha=uniform(0.01, 0.3), min_samples_leaf=randint(5, 10))

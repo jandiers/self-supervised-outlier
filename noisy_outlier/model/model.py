@@ -28,7 +28,7 @@ class NoisyOutlierDetector(Pipeline):
         the provided data and uniform noise. See paper for details. Usage is as follows:
 
         >>> import numpy as np
-        >>> from noisy_outlier_detection import NoisyOutlierDetector
+        >>> from noisy_outlier import NoisyOutlierDetector
         >>> X = np.random.randn(50, 2)
         >>> model = NoisyOutlierDetector()
         >>> model.fit(X)
