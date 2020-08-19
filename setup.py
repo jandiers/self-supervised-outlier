@@ -7,7 +7,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name='noisy_outlier',
-    version='0.1.0',
+    version='0.1.1',
     author='Jan Diers',
     author_email='jan.diers@uni-jena.de',
     description='Self-Supervised Learning for Outlier Detection.',
