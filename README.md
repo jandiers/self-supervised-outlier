@@ -32,9 +32,9 @@ supervised problem to mitigate the problem of irrelevant features and the hiding
 We benchmark our model against common outlier detection models and have clear advantages in outlier detection 
 when many irrelevant features are present.
 
-This repository contains the code used for the experiments, as well as instructions to reproduce our results. For 
-reproduction of our results, please switch to the "publication" branch or click [here](https://github.com/JanDiers/self-supervised-outlier/tree/publication).
-
+This repository contains the code used for the experiments, as well as instructions to reproduce our results. 
+Find the publication [here - LINK FEHLT - ](). For reproduction of our results, please switch to the "publication" branch 
+or click [here](https://github.com/JanDiers/self-supervised-outlier/tree/publication).
 
 ## Installation
 
