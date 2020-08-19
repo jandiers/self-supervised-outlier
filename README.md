@@ -1,3 +1,27 @@
+# Steps to reproduce our results
+
+The following dependencies are required to run our experiments:
+
+- noisy outlier detection
+    - `pip install noisy_outlier`
+- pandas
+    - `pip install pandas`
+- pyod, including keras
+    - `pip install pyod keras tensorflow`
+- matplotlib and seaborn
+    - `pip install matplotlib seaborn`
+- jupyter notebook
+    - `pip install notebook`
+- tqdm
+    - `pip install tqdm`
+
+Once installed, run the benchmarks in the `publication` folder:
+- `benchmark_no_noisy_features.py`
+- `benchmark_added_noisy_features.py`
+
+The results will appear in the `results` folder where you can also find the results for our publication.
+
+
 # Self-Supervised Learning for Outlier Detection
 
 The detection of outliers can be very challenging, especially if the data has features that do not carry 
@@ -70,26 +94,3 @@ please switch to the "publication" branch or click [here](https://github.com/Jan
 ````
 BibTeX Eintrag
 ````
-
-## Steps to reproduce our results
-
-The following dependencies are required to run our experiments:
-
-- noisy outlier detection
-    - `pip install noisy_outlier`
-- pandas
-    - `pip install pandas`
-- pyod, including keras
-    - `pip install pyod keras tensorflow`
-- matplotlib and seaborn
-    - `pip install matplotlib seaborn`
-- jupyter notebook
-    - `pip install notebook`
-- tqdm
-    - `pip install tqdm`
-
-Once installed, run the benchmarks in the `publication` folder:
-- `benchmark_no_noisy_features.py`
-- `benchmark_added_noisy_features.py`
-
-The results will appear in the `results` folder where you can also find the results for our publication.
