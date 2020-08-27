@@ -1,6 +1,7 @@
 from sklearn import metrics
 from sklearn.preprocessing import minmax_scale
-from noisy_outlier_detection import NoisyOutlierDetector
+from noisy_outlier import NoisyOutlierDetector, HyperparameterOptimizer, PercentileScoring
+from scipy.stats.distributions import uniform, randint
 from pyod.models.knn import KNN
 from pyod.models.lof import LOF
 from pyod.models.iforest import IForest
@@ -20,6 +21,8 @@ from publication.data_loading import ArffFileLoader
 
 sns.set_context('paper')
 
+n_repetitions = 10  # repeat experiments to reduce randomness
+
 files = [
     'Lymphography_withoutdupl_norm_idf.arff',
     'Stamps_withoutdupl_norm_05_v10.arff',
@@ -35,7 +38,7 @@ stamps_models = [
     ('LOF', LOF(n_neighbors=100)),
     ('IForest', IForest(n_estimators=29)),
     ('OCSVM', OCSVM(gamma=1.9e-06)),
-    ('AutoEncoder', AutoEncoder(hidden_neurons=[7,4,1,4,7]))
+    ('AutoEncoder', AutoEncoder(hidden_neurons=[7, 4, 1, 4, 7]))
 ]
 
 heartdisease_models = [
@@ -46,7 +49,6 @@ heartdisease_models = [
     ('OCSVM', OCSVM(gamma=7.494e-07)),
     ('AutoEncoder', AutoEncoder(hidden_neurons=[10, 8, 6, 4, 2, 4, 6, 8, 10])),
 ]
-
 
 wpbc_models = [
     ('Ours', NoisyOutlierDetector(n_jobs=4)),
@@ -73,7 +75,6 @@ model_collection = {
     'Lymphography': lympho_models,
 }
 
-
 for file in files:
     path = Path().cwd()
     loader = ArffFileLoader(name=file.split('_')[0], path=path.joinpath('data').joinpath(file).__str__())
@@ -84,28 +85,46 @@ for file in files:
 
     results = []
 
-    for n_noise_features in tqdm(range(0, 101, 2)):
-        X_loop = np.hstack([
-            X,
-            norm().rvs((n_samples, n_noise_features)),
-            uniform().rvs((n_samples, n_noise_features))
-        ])
+    for repet in range(n_repetitions):
+        for n_noise_features in tqdm(range(0, 101, 2)):
+            X_loop = np.hstack([
+                X,
+                norm().rvs((n_samples, n_noise_features)),
+                uniform().rvs((n_samples, n_noise_features))
+            ])
 
-        n_noise_features = 2 * n_noise_features  # double because one uniform and normal feature has been added
+            n_noise_features = 2 * n_noise_features  # double because one uniform and normal feature has been added
 
-        X_loop = minmax_scale(X_loop)
+            X_loop = minmax_scale(X_loop)
 
-        for name, m in models:
-            m.fit(X_loop)
-            scores = m.decision_function(X_loop)
+            # search for hyperparameter for our model, since the others already have fixed best hyperparameters
+            if n_noise_features == 0:
+                grid = dict(n_estimators=randint(50, 150), ccp_alpha=uniform(0.01, 0.3),
+                            min_samples_leaf=randint(5, 10))
+                hyp_model = HyperparameterOptimizer(estimator=NoisyOutlierDetector(n_jobs=4),
+                                                    param_distributions=grid,
+                                                    scoring=metrics.make_scorer(PercentileScoring(0.05),
+                                                                                needs_proba=True),
+                                                    n_jobs=4,
+                                                    n_iter=5,
+                                                    cv=3, )
+                hyp_model.fit(X)
 
-            auc = metrics.roc_auc_score(y, scores)
-            patn = precision_n_scores(y, scores).round(4)
+            for name, m in models:
+                if name == 'Ours':
+                    m = hyp_model.best_estimator_
 
-            results.append({'model': name, 'AUC': auc, 'PrecAtN': patn, 'n_noise_features': n_noise_features})
+                m.fit(X_loop)
+                scores = m.decision_function(X_loop)
+
+                auc = metrics.roc_auc_score(y, scores)
+                patn = precision_n_scores(y, scores).round(4)
+
+                results.append({'repetition': repet, 'model': name, 'AUC': auc, 'PrecAtN': patn,
+                                'n_noise_features': n_noise_features})
 
     df = pd.DataFrame(results)
-    df = df.set_index(['n_noise_features', 'model']).unstack(level=1)
+    df = df.set_index(['n_noise_features', 'model', 'repetition']).unstack(level=1)
 
     df_auc = df['AUC'][['Ours', 'KNN', 'LOF', 'IForest', 'OCSVM', 'AutoEncoder']]
 
