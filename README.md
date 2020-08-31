@@ -9,9 +9,10 @@ We benchmark our model against common outlier detection models and have clear ad
 when many irrelevant features are present.
 
 This repository contains the code used for the experiments, as well as instructions to reproduce our results. 
-Find the publication [here - LINK FEHLT - ](). For reproduction of our results, please switch to the "publication" branch 
+For reproduction of our results, please switch to the "publication" branch 
 or click [here](https://github.com/JanDiers/self-supervised-outlier/tree/publication).
 
+As soon as our paper will be published online, the link for interested readers will appear here.
 
 ## Installation
 
@@ -64,10 +65,10 @@ optimizer.fit(X)
 # The optimizer is itself a `NoisyOutlierDetector`, so you can use it in the same way:
 outlier_probability = optimizer.predict_outlier_probability(X)
 ````
-Details about the algorithms may be found in our publication. [Feel free to read it (-LINK FEHLT-)](-LINK-). 
+Details about the algorithms may be found in our publication. 
 If you use this work for your publication, please cite as follows. To reproduce our results, 
 please switch to the "publication" branch or click [here](https://github.com/JanDiers/self-supervised-outlier/tree/publication).
 
 ````
-BibTeX Eintrag
+BibTeX Entry coming soon
 ````
