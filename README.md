@@ -70,6 +70,12 @@ If you use this work for your publication, please cite as follows. To reproduce 
 please switch to the "publication" branch or click [here](https://github.com/JanDiers/self-supervised-outlier/tree/publication).
 
 ````
+Diers, J, Pigorsch, C. Self‐supervised learning for outlier detection. Stat. 2021; 10e322. https://doi.org/10.1002/sta4.322 
+````
+
+BibTeX:
+
+````
 @article{https://doi.org/10.1002/sta4.322,
 author = {Diers, Jan and Pigorsch, Christian},
 title = {Self-supervised learning for outlier detection},
