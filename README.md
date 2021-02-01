@@ -70,5 +70,18 @@ If you use this work for your publication, please cite as follows. To reproduce 
 please switch to the "publication" branch or click [here](https://github.com/JanDiers/self-supervised-outlier/tree/publication).
 
 ````
-BibTeX Entry coming soon
+@article{https://doi.org/10.1002/sta4.322,
+author = {Diers, Jan and Pigorsch, Christian},
+title = {Self-supervised learning for outlier detection},
+journal = {Stat},
+volume = {10},
+number = {1},
+pages = {e322},
+keywords = {hyperparameter, machine learning, noisy signal, outlier detection, self-supervised learning},
+doi = {https://doi.org/10.1002/sta4.322},
+url = {https://onlinelibrary.wiley.com/doi/abs/10.1002/sta4.322},
+eprint = {https://onlinelibrary.wiley.com/doi/pdf/10.1002/sta4.322},
+note = {e322 sta4.322},
+year = {2021}
+}
 ````
