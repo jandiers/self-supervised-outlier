@@ -12,7 +12,7 @@ This repository contains the code used for the experiments, as well as instructi
 For reproduction of our results, please switch to the "publication" branch 
 or click [here](https://github.com/JanDiers/self-supervised-outlier/tree/publication).
 
-As soon as our paper will be published online, the link for interested readers will appear here.
+If you use this code in your publication, we ask you to cite our paper. Find the details below.
 
 ## Installation
 
