@@ -7,7 +7,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name='noisy_outlier',
-    version='0.1.2',
+    version='0.1.3',
     author='Jan Diers',
     author_email='jan.diers@uni-jena.de',
     description='Self-Supervised Learning for Outlier Detection.',
@@ -22,6 +22,6 @@ setup(
               ],
     python_requires='>=3.6',
     install_requires=[
-        'scikit-learn',
+        'scikit-learn==0.23.2',
     ],
 )
