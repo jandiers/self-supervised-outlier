@@ -11,6 +11,7 @@ class PercentileScoring(object):
         :param contamination: expected contamination to optimize for
         """
         self.contamination = contamination
+        self.__name__ = 'PercentileScoring'
 
     def __call__(self, y, y_pred):
         percentile_score = np.percentile(y_pred, 100 - (self.contamination * 100))

@@ -1,13 +1,13 @@
 from setuptools import setup
 
 
-with open("README.md", "r") as fh:
+with open("README.md", "r", encoding='utf8') as fh:
     long_description = fh.read()
 
 
 setup(
     name='noisy_outlier',
-    version='0.1.3',
+    version='0.1.4',
     author='Jan Diers',
     author_email='jan.diers@uni-jena.de',
     description='Self-Supervised Learning for Outlier Detection.',
