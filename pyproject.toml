@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "noisy_outlier"
+version = "0.1.6"
+description = "Self-Supervised Learning for Outlier Detection"
+authors = ["JanDiers <jan.diers@uni-jena.de>"]
+readme = "README.md"
+homepage = "https://github.com/jandiers/self-supervised-outlier"
+documentation = "https://github.com/jandiers/self-supervised-outlier"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+numpy = "^1.24.3"
+scikit-learn = "^1.2.2"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
